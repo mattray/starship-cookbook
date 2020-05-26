@@ -24,5 +24,7 @@ suites:
     attributes:
       starship:
         user:
-          root: bash
-          mattray: bash
+          root:
+            shell: bash
+          mattray:
+            shell: bash

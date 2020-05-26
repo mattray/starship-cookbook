@@ -18,18 +18,32 @@ archive_file starship_tgz do
 end
 
 node['starship']['user'].keys.each do |user|
-  shell = node['starship']['user'][user]
+  shell = node['starship']['user'][user]['shell']
   if user == 'root'
     path = '/root'
   else
     path = "/home/#{user}"
   end
 
-  append_if_no_line "Add starship to #{path}/.bashrc" do
-    path path+"/.bashrc"
-    line 'eval "$(/opt/starship/starship init bash)"'
-    only_if { shell == 'bash' }
-    only_if { ::File.exist?(path) }
-  end
+  if ::File.exist?(path)
+    append_if_no_line "Add starship to #{path}/.bashrc" do
+      path path+"/.bashrc"
+      line 'eval "$(/opt/starship/starship init bash)"'
+      only_if { shell == 'bash' }
+    end
 
+    # write out the config
+    config = node['starship']['user'][user]['config']
+    dot_config = path+"/.config"
+    unless config.nil?
+      directory dot_config do
+        owner user
+      end
+
+      toml_file dot_config + "/starship.toml" do
+        content config
+        owner user
+      end
+    end
+  end
 end
