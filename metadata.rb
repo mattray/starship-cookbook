@@ -3,7 +3,7 @@ maintainer 'Matt Ray'
 maintainer_email 'chef@mattray.dev'
 license 'Apache-2.0'
 description 'Installs/Configures Starship command prompt'
-version '0.2.0'
+version '0.2.1'
 chef_version '>= 16.0'
 
 supports 'debian'

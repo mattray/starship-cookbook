@@ -1,7 +1,6 @@
 name 'starship'
 
 default_source :supermarket
-cookbook 'toml', git: 'https://github.com/mattray/toml-cookbook'
 
 run_list 'starship::default'
 

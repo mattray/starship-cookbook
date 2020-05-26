@@ -34,6 +34,7 @@ node['starship']['user'].keys.each do |user|
 
     # write out the config
     config = node['starship']['user'][user]['config']
+    node.rm('starship', 'user', user, 'config') # removes extraneous attributes
     dot_config = path+"/.config"
     unless config.nil?
       directory dot_config do

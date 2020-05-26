@@ -39,3 +39,8 @@ end
 describe file '/home/mattray/.config/starship.toml' do
   it { should_not exist }
 end
+
+describe file('/tmp/kitchen/nodes/default-debian-10.json') do
+  its('content') { should_not match(/✖/) }
+  its('content') { should_not match(/✦/) }
+end

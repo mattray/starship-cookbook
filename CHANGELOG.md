@@ -13,3 +13,7 @@ Initial release.
 
 - moved 'shell' to `node['starship']['user'][USER]['shell']`
 - added support for `~/.config/starship.toml` via the [toml cookbook](https://github.com/mattray/toml-cookbook)
+
+# 0.2.1
+
+- removed extra config to trim down the attributes
