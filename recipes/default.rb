@@ -3,7 +3,11 @@
 # Recipe:: default
 #
 
-package "fonts-powerline"
+if debian_platform?
+  package "fonts-powerline"
+elsif arch_platform?
+  package "noto-fonts-emoji"
+end
 
 starship_tgz = "#{Chef::Config[:file_cache_path]}/starship.tar.gz"
 
